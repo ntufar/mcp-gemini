@@ -38,6 +38,12 @@ uvicorn src.main:app --reload
 
 The server will start on `http://127.0.0.1:8000` by default. You can then send JSON-RPC 2.0 requests to `http://127.0.0.1:8000/`.
 
+### Python Client Example
+
+For a practical demonstration of how to interact with the MCP Server's API using Python, refer to the `mcp_client_example.py` script in the `examples/` directory.
+
+[View Python Client Example](examples/mcp_client_example.py)
+
 ## API
 
 ### List Directory
@@ -108,6 +114,18 @@ The `fs.readFile` method allows an LLM to read the contents of a specified file.
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue.
+
+## Gemini AI Integration
+
+Learn how to integrate the MCP Server with Gemini AI models to enable them to browse local directories and read files. This guide provides exact instructions and code examples for defining the MCP Server's functionalities as tools for Gemini.
+
+[Read the Gemini AI Integration Guide](docs/gemini_integration.md)
+
+### Python Client Example for Gemini Integration
+
+For a runnable Python example demonstrating how to integrate and use the MCP Server with Gemini AI, refer to the `gemini_mcp_integration.py` script in the `examples/` directory.
+
+[View Gemini Integration Example](examples/gemini_mcp_integration.py)
 
 ## License
 
