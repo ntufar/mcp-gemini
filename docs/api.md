@@ -6,6 +6,9 @@ This document describes the JSON-RPC 2.0 API for the MCP Server, which allows La
 
 All requests are `POST` requests to the root endpoint (`/`). The request body must be a JSON-RPC 2.0 compliant object.
 
+
+The server's sandboxed root directory is typically configured via an environment variable (e.g., `MCP_ROOT_DIR`) or a command-line argument when starting the server. This ensures that file system access is restricted to a designated safe area.
+
 ## Methods
 
 ### `fs.listDirectory`
@@ -89,4 +92,4 @@ Reads the content of a specified file.
   ```
 - **Error Handling**:
   - `FileNotFoundError` (code: 404): If the specified `path` does not exist or is not a file.
-  - `ValueError` (code: 400): If the `path` attempts to access outside the sandboxed root directory, or if the file size exceeds the configured limit (e.g., 10MB).
+  - `ValueError` (code: 400): If the `path` attempts to access outside the sandboxed root directory, or if the file size exceeds the configured limit (default: 10MB, configurable).
