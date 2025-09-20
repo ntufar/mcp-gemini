@@ -3,6 +3,13 @@ class MCPCompliance:
         pass
 
     def check_compliance(self, request: dict) -> bool:
-        # TODO: Implement actual MCP compliance checks
-        # This might involve schema validation, method existence checks, etc.
+        # Check for required JSON-RPC 2.0 fields
+        if "jsonrpc" not in request or request["jsonrpc"] != "2.0":
+            return False
+        if "method" not in request:
+            return False
+        if "id" not in request:
+            # JSON-RPC 2.0 allows notifications (no id), but for this server, we require an id for responses
+            # For now, we'll require an ID for simplicity in initial compliance.
+            return False
         return True

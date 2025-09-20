@@ -2,31 +2,27 @@ import logging
 import json
 import datetime
 
-class StructuredLogger(logging.Logger):
-    def _log(self, level, msg, args, exc_info=None, extra=None, stack_info=False, stacklevel=1):
+class JsonFormatter(logging.Formatter):
+    def format(self, record):
         log_entry = {
             "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "level": logging.getLevelName(level),
-            "message": msg,
+            "level": record.levelname,
+            "message": record.getMessage(),
         }
-        if extra:
-            log_entry.update(extra)
-        if exc_info:
-            log_entry["exc_info"] = self.formatException(exc_info)
+        if hasattr(record, 'extra') and record.extra:
+            log_entry.update(record.extra)
+        if record.exc_info:
+            log_entry["exc_info"] = self.formatException(record.exc_info)
         
-        super()._log(level, json.dumps(log_entry), args, exc_info, extra, stack_info, stacklevel)
+        return json.dumps(log_entry)
 
-# Configure a custom logger class
-logging.setLoggerClass(StructuredLogger)
-
-def get_logger(name: str) -> StructuredLogger:
+def get_logger(name: str) -> logging.Logger:
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
     
-    # Ensure handlers are not duplicated if get_logger is called multiple times
     if not logger.handlers:
         handler = logging.StreamHandler()
-        formatter = logging.Formatter('%(message)s')
+        formatter = JsonFormatter()
         handler.setFormatter(formatter)
         logger.addHandler(handler)
     

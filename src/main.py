@@ -8,7 +8,7 @@ app = FastAPI()
 logger = get_logger(__name__)
 
 # TODO: Make root_dir configurable (e.g., via environment variable or command line argument)
-ROOT_DIR = os.getcwd()
+ROOT_DIR = os.getenv("MCP_SERVER_ROOT_DIR", os.getcwd())
 file_browser = FileBrowser(root_dir=ROOT_DIR)
 mcp_compliance = MCPCompliance()
 
@@ -58,6 +58,3 @@ async def rpc_endpoint(request: dict):
     except ValueError as e:
         logger.error("Value error", extra={"error": str(e), "method": method, "path": params.get("path")})
         raise HTTPException(status_code=400, detail=str(e))
-    except Exception as e:
-        logger.exception("Unhandled exception during RPC request") # Use exception for full traceback
-        raise HTTPException(status_code=500, detail=str(e))
