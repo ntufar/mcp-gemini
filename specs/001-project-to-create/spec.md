@@ -31,8 +31,8 @@ As an LLM, I want to be able to browse local directories and files on a user's m
 - **FR-003**: The system MUST handle requests for non-existent files and directories gracefully by returning an appropriate error message.
 - **FR-004**: The system MUST NOT allow access to files or directories outside of a specified root directory (sandboxing).
 - **FR-005**: The system MUST log all requests and responses for observability.
-- **FR-006**: The system MUST be able to handle [NEEDS CLARIFICATION: What is the expected file size limit?].
-- **FR-007**: The system MUST handle [NEEDS CLARIFICATION: How should binary files be handled? Return as base64 or return an error?].
+- **FR-006**: The system MUST be able to handle files up to 10MB in size.
+- **FR-007**: The system MUST handle binary files and deliver them as is.
 
 ### Key Entities *(include if feature involves data)*
 - **File**: Represents a file on the local file system. Attributes: name, path, size, modification date.
