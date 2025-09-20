@@ -127,6 +127,8 @@ For a runnable Python example demonstrating how to integrate and use the MCP Ser
 
 [View Gemini Integration Example](examples/gemini_mcp_integration.py)
 
+For a detailed example run showing the interaction, see the [Gemini MCP Integration Example Run](examples/gemini_mcp_integration.md).
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
