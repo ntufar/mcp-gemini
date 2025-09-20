@@ -33,6 +33,7 @@ As an LLM, I want to be able to browse local directories and files on a user's m
 - **FR-005**: The system MUST log all requests and responses for observability.
 - **FR-006**: The system MUST be able to handle files up to 10MB in size.
 - **FR-007**: The system MUST handle binary files and deliver them as is.
+- **FR-008**: The system MUST comply with the Model Context Protocol (MCP) specification (https://modelcontextprotocol.io/specification/2025-06-18).
 
 ### Key Entities *(include if feature involves data)*
 - **File**: Represents a file on the local file system. Attributes: name, path, size, modification date.
