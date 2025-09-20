@@ -40,4 +40,3 @@ def test_read_file_performance(benchmark, client, large_file):
         )
         assert response.status_code == 200
         assert "result" in response.json()
-

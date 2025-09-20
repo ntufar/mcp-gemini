@@ -6,6 +6,7 @@ This document describes the JSON-RPC 2.0 API for the MCP Server, which allows La
 
 All requests are `POST` requests to the root endpoint (`/`). The request body must be a JSON-RPC 2.0 compliant object.
 
+
 The server's sandboxed root directory is typically configured via an environment variable (e.g., `MCP_ROOT_DIR`) or a command-line argument when starting the server. This ensures that file system access is restricted to a designated safe area.
 
 ## Methods

@@ -166,6 +166,7 @@ if __name__ == "__main__":
 
 ### Important Considerations
 
+
 *   **Tool Naming Convention:** Note that while the MCP Server's JSON-RPC methods use a dot notation (e.g., `fs.listDirectory`), the `FunctionDeclaration` names for Gemini tools use an underscore (e.g., `fs_listDirectory`). This is a common convention when mapping API methods to tool names in Gemini.
 *   **Security:** The MCP Server provides sandboxing, but ensure the `ROOT_DIR` is configured carefully in your server to prevent LLMs from accessing sensitive areas of your file system.
 *   **Error Handling:** The example includes basic error handling. In a production application, you'd want more robust error reporting and retry mechanisms.
@@ -244,3 +245,5 @@ Gemini (final response): The src/ directory contains the following files and dir
 Directories: utils, services
 Files: main.py
 ```
+*   **State Management:** For multi-turn conversations, the `chat` object in the `google-generativeai` library automatically manages conversation history, allowing Gemini to remember previous interactions and tool outputs.
+

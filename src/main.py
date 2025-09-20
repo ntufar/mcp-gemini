@@ -26,6 +26,7 @@ def create_jsonrpc_error(request_id, code: int, message: str, data: any = None):
         error_response["error"]["data"] = data
     return JSONResponse(status_code=status.HTTP_200_OK, content=error_response)
 
+
 @app.get("/")
 async def root():
     logger.info("Root endpoint accessed", extra={"endpoint": "/"})
@@ -81,3 +82,10 @@ async def rpc_endpoint(request: dict):
     except ValueError as e:
         logger.error("Value error", extra={"error": str(e), "method": method, "path": params.get("path")})
         return create_jsonrpc_error(request_id, -32000, "Server error", str(e)) # Using a generic server error code for now
+            raise HTTPException(status_code=404, detail=f"Method not found: {method}")
+    except FileNotFoundError as e:
+        logger.error("File not found error", extra={"error": str(e), "method": method, "path": params.get("path")})
+        raise HTTPException(status_code=404, detail=str(e))
+    except ValueError as e:
+        logger.error("Value error", extra={"error": str(e), "method": method, "path": params.get("path")})
+        raise HTTPException(status_code=400, detail=str(e))
