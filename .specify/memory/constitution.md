@@ -1,33 +1,38 @@
 <!--
 Sync Impact Report:
-- Version change: 0.0.0 → 1.0.0
-- List of modified principles: None (initial creation)
-- Added sections: Core Principles, Governance
+- Version change: 1.0.0 → 2.0.0
+- List of modified principles:
+  - Code Quality → Security First
+  - Testing Standards → Clear API Contracts
+  - User Experience Consistency → Modular and Extensible
+  - Performance Requirements → Comprehensive Observability
+- Added sections: V. Rigorous Testing
 - Removed sections: None
 - Templates requiring updates:
   - ⚠ pending: .specify/templates/plan-template.md
-  - ⚠ pending: .specify/templates/spec-template.md
-  - ⚠ pending: .specify/templates/tasks-template.md
 - Follow-up TODOs: None
 -->
-# mcp-gemini Constitution
+# MCP Server Constitution
 
 ## Core Principles
 
-### I. Code Quality
-Code must be clean, readable, and maintainable. It should adhere to established coding standards and best practices. All code must be peer-reviewed before merging.
+### I. Security First
+All code must be written with security as the top priority. This includes robust input validation, sandboxing of file system operations, and measures to prevent any form of unauthorized access or malicious command execution.
 
-### II. Testing Standards
-Every feature must have comprehensive unit and integration tests. Test-Driven Development (TDD) is strongly encouraged. A minimum of 80% code coverage is required for all new contributions.
+### II. Clear API Contracts
+The server's API must be clearly defined and documented using the OpenAPI specification. All API changes must be versioned according to semantic versioning to ensure backward compatibility and a clear evolution path.
 
-### III. User Experience Consistency
-The user interface and experience must be consistent across the entire application. All new features and components must adhere to the established design system and style guides to ensure a seamless and intuitive user journey.
+### III. Modular and Extensible
+The server must be built with a modular architecture. New commands and functionalities should be implementable as self-contained plugins or modules, minimizing the need for core system refactoring.
 
-### IV. Performance Requirements
-The application must meet defined performance benchmarks for key user interactions, including response times and resource utilization. All new code must be profiled and optimized to prevent performance regressions.
+### IV. Comprehensive Observability
+The server must provide structured, actionable logs for all operations. Key metrics on API usage, performance, and errors shall be exposed to allow for effective monitoring, debugging, and alerting.
+
+### V. Rigorous Testing
+Every feature must be accompanied by a full suite of tests, including unit, integration, and end-to-end tests. Security-specific tests, including penetration and vulnerability scanning, are mandatory before any release.
 
 ## Governance
 
 All development must adhere to the principles outlined in this constitution. Proposed changes to this constitution require a formal amendment process, including review and ratification by the project stewards.
 
-**Version**: 1.0.0 | **Ratified**: 2025-09-20 | **Last Amended**: 2025-09-20
+**Version**: 2.0.0 | **Ratified**: 2025-09-20 | **Last Amended**: 2025-09-20
