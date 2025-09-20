@@ -27,35 +27,68 @@
 
 ### List Directory
 
-- **Endpoint**: `GET /list`
-- **Query Parameters**:
-  - `path`: The directory path to list (relative to the root directory).
+The `fs.listDirectory` method allows an LLM to list the contents of a specified directory.
+
+- **Method**: `fs.listDirectory`
+- **Request**:
+  ```json
+  {
+    "jsonrpc": "2.0",
+    "method": "fs.listDirectory",
+    "params": {
+      "path": "/path/to/directory"
+    },
+    "id": 1
+  }
+  ```
 - **Response**:
   ```json
   {
-    "files": [
-      {
-        "name": "file.txt",
-        "path": "/path/to/file.txt",
-        "size": 1024,
-        "modified_date": "2025-09-20T10:00:00Z"
-      }
-    ],
-    "directories": [
-      {
-        "name": "subdir",
-        "path": "/path/to/subdir"
-      }
-    ]
+    "jsonrpc": "2.0",
+    "result": {
+      "files": [
+        {
+          "name": "file.txt",
+          "path": "/path/to/file.txt",
+          "size": 1024,
+          "modified_date": "2025-09-20T10:00:00Z"
+        }
+      ],
+      "directories": [
+        {
+          "name": "subdir",
+          "path": "/path/to/subdir"
+        }
+      ]
+    },
+    "id": 1
   }
   ```
 
 ### Read File
 
-- **Endpoint**: `GET /read`
-- **Query Parameters**:
-  - `path`: The file path to read (relative to the root directory).
-- **Response**: The content of the file.
+The `fs.readFile` method allows an LLM to read the contents of a specified file.
+
+- **Method**: `fs.readFile`
+- **Request**:
+  ```json
+  {
+    "jsonrpc": "2.0",
+    "method": "fs.readFile",
+    "params": {
+      "path": "/path/to/file.txt"
+    },
+    "id": 2
+  }
+  ```
+- **Response**: The content of the file will be returned as a string in the `result` field.
+  ```json
+  {
+    "jsonrpc": "2.0",
+    "result": "This is the content of the file.",
+    "id": 2
+  }
+  ```
 
 ## Contributing
 
