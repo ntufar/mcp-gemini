@@ -47,8 +47,8 @@
 
 ## Phase 3.2: Tests First (TDD) ⚠️ MUST COMPLETE BEFORE 3.3
 **CRITICAL: These tests MUST be written and MUST FAIL before ANY implementation**
-- [ ] T004 [P] Contract test for GET /list endpoint (tests/contract/test_list_endpoint.py)
-- [ ] T005 [P] Contract test for GET /read endpoint (tests/contract/test_read_endpoint.py)
+- [ ] T004 [P] Contract test for `fs.listDirectory` (tests/contract/test_list_directory.py)
+- [ ] T005 [P] Contract test for `fs.readFile` (tests/contract/test_read_file.py)
 - [ ] T006 [P] Integration test for sandboxing (tests/integration/test_sandboxing.py)
 - [ ] T007 [P] Integration test for non-existent paths (tests/integration/test_error_handling.py)
 - [ ] T008 [P] Integration test for file size limit (tests/integration/test_file_size.py)
@@ -59,8 +59,8 @@
 - [ ] T011 [P] Implement directory listing logic (src/services/file_browser.py)
 - [ ] T012 [P] Implement file reading logic (src/services/file_browser.py)
 - [ ] T013 Implement FastAPI application setup (src/main.py)
-- [ ] T014 Implement GET /list endpoint (src/main.py)
-- [ ] T015 Implement GET /read endpoint (src/main.py)
+- [ ] T014 Implement `fs.listDirectory` endpoint (src/main.py)
+- [ ] T015 Implement `fs.readFile` endpoint (src/main.py)
 - [ ] T016 Implement sandboxing mechanism (src/utils/security.py)
 - [ ] T017 Implement error handling for non-existent paths (src/main.py)
 - [ ] T018 Implement file size limit check (src/services/file_browser.py)
@@ -87,8 +87,8 @@
 ## Parallel Example
 ```
 # Launch T004-T010 together:
-Task: "Contract test for GET /list endpoint (tests/contract/test_list_endpoint.py)"
-Task: "Contract test for GET /read endpoint (tests/contract/test_read_endpoint.py)"
+Task: "Contract test for `fs.listDirectory` (tests/contract/test_list_directory.py)"
+Task: "Contract test for `fs.readFile` (tests/contract/test_read_file.py)"
 Task: "Integration test for sandboxing (tests/integration/test_sandboxing.py)"
 Task: "Integration test for non-existent paths (tests/integration/test_error_handling.py)"
 Task: "Integration test for file size limit (tests/integration/test_file_size.py)"
@@ -106,7 +106,7 @@ Task: "Integration test for MCP compliance (tests/integration/test_mcp_complianc
 *Applied during main() execution*
 
 1. **From Contracts**: (Not applicable yet, contracts/ directory is empty)
-   - Each contract file → contract test task marked [P]
+   - Each contract file → contract test task [P]
    - Each endpoint → implementation task
    
 2. **From Data Model**: (Not applicable yet, data-model.md is empty)
