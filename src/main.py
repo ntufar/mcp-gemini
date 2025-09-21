@@ -82,10 +82,3 @@ async def rpc_endpoint(request: dict):
     except ValueError as e:
         logger.error("Value error", extra={"error": str(e), "method": method, "path": params.get("path")})
         return create_jsonrpc_error(request_id, -32000, "Server error", str(e)) # Using a generic server error code for now
-            raise HTTPException(status_code=404, detail=f"Method not found: {method}")
-    except FileNotFoundError as e:
-        logger.error("File not found error", extra={"error": str(e), "method": method, "path": params.get("path")})
-        raise HTTPException(status_code=404, detail=str(e))
-    except ValueError as e:
-        logger.error("Value error", extra={"error": str(e), "method": method, "path": params.get("path")})
-        raise HTTPException(status_code=400, detail=str(e))
