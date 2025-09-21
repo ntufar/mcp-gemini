@@ -9,10 +9,11 @@ def test_mcp_compliance_invalid_jsonrpc_version(client):
             "id": 1
         }
     )
-    assert response.status_code == 400
+    assert response.status_code == 200
     result = response.json()
-    assert "detail" in result
-    assert "Request does not comply with MCP specification" in result["detail"]
+    assert "error" in result
+    assert result["error"]["code"] == -32600 # Invalid Request
+    assert "Request does not comply with MCP specification" in result["error"]["data"]
 
 def test_mcp_compliance_method_not_found(client):
     response = client.post(
@@ -24,8 +25,9 @@ def test_mcp_compliance_method_not_found(client):
             "id": 1
         }
     )
-    assert response.status_code == 404
+    assert response.status_code == 200
     result = response.json()
-    assert "detail" in result
-    assert "Method not found" in result["detail"]
+    assert "error" in result
+    assert result["error"]["code"] == -32601 # Method not found
+    assert "Method not found" in result["error"]["data"]
 

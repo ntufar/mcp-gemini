@@ -16,8 +16,9 @@ def test_file_size_limit(client, server_root_dir):
             "id": 1
         }
     )
-    assert response.status_code == 400
+    assert response.status_code == 200
     result = response.json()
-    assert "detail" in result
-    assert "File size exceeds the 10MB limit" in result["detail"]
+    assert "error" in result
+    assert result["error"]["code"] == -32000 # Generic server error for ValueError
+    assert "File size exceeds the 10MB limit" in result["error"]["data"]
 

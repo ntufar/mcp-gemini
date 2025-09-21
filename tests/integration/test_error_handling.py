@@ -10,8 +10,9 @@ def test_error_handling_non_existent_path(client):
             "id": 1
         }
     )
-    assert response.status_code == 404
+    assert response.status_code == 200
     result = response.json()
-    assert "detail" in result
-    assert "Directory not found" in result["detail"]
+    assert "error" in result
+    assert result["error"]["code"] == -32000 # Generic server error for FileNotFoundError
+    assert "Directory not found" in result["error"]["data"]
 
