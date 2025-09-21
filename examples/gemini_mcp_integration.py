@@ -14,11 +14,10 @@ fs_list_directory_tool = genai.protos.FunctionDeclaration(
     name="fs_listDirectory",
     description="Lists the contents (files and subdirectories) of a specified directory on the local file system via the MCP Server.",
     parameters=genai.protos.Schema(
-        type=genai.protos.Schema.Type.OBJECT,
+        type='OBJECT',
         properties={
             "path": genai.protos.Schema(
-                type=genai.protos.Schema.Type.STRING,
-                description="The path to the directory to list, relative to the server's root directory. Defaults to '.' (the server's configured root).",
+            type='STRING',
             )
         },
         required=["path"], # Mark path as required, even if it has a default in your server
@@ -29,10 +28,10 @@ fs_read_file_tool = genai.protos.FunctionDeclaration(
     name="fs_readFile",
     description="Reads the content of a specified file on the local file system via the MCP Server.",
     parameters=genai.protos.Schema(
-        type=genai.protos.Schema.Type.OBJECT,
+        type='OBJECT',
         properties={
             "path": genai.protos.Schema(
-                type=genai.protos.Schema.Type.STRING,
+            type='STRING',
                 description="The path to the file to read, relative to the server's root directory.",
             )
         },
@@ -44,13 +43,13 @@ fs_read_file_tool = genai.protos.FunctionDeclaration(
 available_tools = [fs_list_directory_tool, fs_read_file_tool]
 
 # Initialize the Gemini model with tool configuration
-# Use a model that supports function calling, e.g., 'gemini-pro'
+# Use a model that supports function calling, e.g., 'models/gemini-2.0-flash-lite'
 model = genai.GenerativeModel(
-    'gemini-pro',
+    'models/gemini-2.0-flash-lite',
     tools=available_tools
 )
 
-def execute_mcp_tool_call(function_call: genai.protos.FunctionCall):
+def execute_mcp_tool_call(function_call: genai.protos.FunctifonCall):
     """
     Executes a tool call by making a JSON-RPC 2.0 request to the MCP Server.
     """
