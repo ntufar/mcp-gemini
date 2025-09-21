@@ -44,6 +44,7 @@ async def rpc_endpoint(request: dict):
 
     jsonrpc_version = request.get("jsonrpc")
     method = request.get("method")
+    logger.info("Requested service method", extra={"method": method})
     params = request.get("params", {})
     
 
