@@ -5,7 +5,10 @@ import httpx
 import os
 import time
 
+import sys
+
 def run_server(root_dir):
+    sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
     os.environ["MCP_SERVER_ROOT_DIR"] = str(root_dir)
     uvicorn.run("src.main:app", host="127.0.0.1", port=8000, log_level="info")
 

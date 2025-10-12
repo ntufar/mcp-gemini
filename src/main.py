@@ -71,12 +71,21 @@ async def rpc_endpoint(request: dict):
             response = {"jsonrpc": "2.0", "result": content, "id": request_id}
             logger.info("fs.readFile successful", extra={"path": path, "response_length": len(content)}) # Log length for potentially large content
             return response
+        elif method == "fs.search":
+            path = params.get("path", ".")
+            pattern = params.get("pattern")
+            if pattern is None:
+                return create_jsonrpc_error(request_id, -32602, "Invalid params", "Missing 'pattern' parameter for fs.search")
+            results = file_browser.search_in_directory(path, pattern)
+            response = {"jsonrpc": "2.0", "result": results, "id": request_id}
+            logger.info("fs.search successful", extra={"path": path, "pattern": pattern, "result_count": len(results)})
+            return response
         else:
             logger.warning("Method not found", extra={"method": method})
             return create_jsonrpc_error(request_id, -32601, "Method not found", f"Method not found: {method}")
     except FileNotFoundError as e:
-        logger.error("File not found error", extra={"error": str(e), "method": method, "path": params.get("path")})
-        return create_jsonrpc_error(request_id, -32000, "Server error", str(e)) # Using a generic server error code for now
+        logger.critical(f"THIS IS THE REAL ERROR: {e}")
+        return create_jsonrpc_error(request_id, -32000, "File not found", str(e))
     except PermissionDeniedError as e:
         logger.error("Permission denied error", extra={"error": str(e), "method": method, "path": params.get("path")})
         return create_jsonrpc_error(request_id, -32000, "Server error", str(e)) # Using a generic server error code for now

@@ -2,7 +2,7 @@
 
 **Feature Branch**: `001-project-to-create`  
 **Created**: 2025-09-20  
-**Status**: Completed  
+**Status**: In Progress
 **Input**: User description: "project to create MCP Server to help LLM to browse local directories and files"
 
 ---
@@ -17,6 +17,7 @@ As an LLM, I want to be able to browse local directories and files on a user's m
 2. **Given** the MCP Server is running, **When** I send a request to read the contents of a file, **Then** I receive the content of that file.
 3. **Given** the MCP Server is running, **When** I send a request to a directory that does not exist, **Then** I receive an error message indicating that the directory was not found.
 4. **Given** the MCP Server is running, **When** I send a request to read a file that does not exist, **Then** I receive an error message indicating that the file was not found.
+5. **Given** the MCP Server is running, **When** I send a request to search for a pattern in a directory, **Then** I receive a list of matching lines from files in that directory.
 
 ### Edge Cases
 - What happens when a request is made to a restricted directory?
@@ -34,6 +35,7 @@ As an LLM, I want to be able to browse local directories and files on a user's m
 - **FR-006**: The system MUST be able to handle files up to 10MB in size.
 - **FR-007**: The system MUST handle binary files and deliver them as is.
 - **FR-008**: The system MUST comply with the Model Context Protocol (MCP) specification (https://modelcontextprotocol.io/specification/2025-06-18).
+- **FR-009**: The system MUST provide an API endpoint to search for a text pattern within files in a specified directory.
 
 ### Key Entities *(include if feature involves data)*
 - **File**: Represents a file on the local file system. Attributes: name, path, size, modification date.

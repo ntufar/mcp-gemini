@@ -35,7 +35,8 @@ class FileBrowser:
                             "name": entry.name,
                             "path": entry_path,
                             "size": stat.st_size,
-                            "modified_date": datetime.datetime.fromtimestamp(stat.st_mtime).isoformat() + "Z"
+                            "modified_date": datetime.datetime.fromtimestamp(stat.st_mtime).isoformat() + "Z",
+                            "created_date": datetime.datetime.fromtimestamp(stat.st_ctime).isoformat() + "Z"
                         })
                     elif entry.is_dir():
                         directories.append({
@@ -68,3 +69,27 @@ class FileBrowser:
         except UnicodeDecodeError:
             # If decoding fails, base64 encode the bytes
             return base64.b64encode(content_bytes).decode("utf-8")
+
+    def search_in_directory(self, path: str, pattern: str):
+        full_path = self._resolve_path(path)
+        if not os.path.isdir(full_path):
+            raise FileNotFoundError(f"Directory not found: {path}")
+
+        results = []
+        for root, _, files in os.walk(full_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                relative_path = os.path.relpath(file_path, self.root_dir)
+                try:
+                    with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                        for line_number, line in enumerate(f, 1):
+                            if pattern in line:
+                                results.append({
+                                    "file_path": relative_path,
+                                    "line_number": line_number,
+                                    "line": line.strip(),
+                                })
+                except (PermissionError, IOError):
+                    # Ignore files that can't be read
+                    continue
+        return results

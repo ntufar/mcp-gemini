@@ -72,11 +72,21 @@
 - [X] T022 Integrate logging into API endpoints (src/main.py)
 
 ## Phase 3.5: Polish
-- [X] T023 [P] Unit tests for file_browser.py (tests/unit/test_file_browser.py)
-- [X] T024 [P] Unit tests for security.py (tests/unit/test_security.py)
-- [X] T025 [P] Update API documentation (docs/api.md)
-- [X] T026 Performance tests for API endpoints
-- [X] T027 Review and refactor code for maintainability
+- [ ] T023 [P] Unit tests for file_browser.py (tests/unit/test_file_browser.py)
+- [ ] T024 [P] Unit tests for security.py (tests/unit/test_security.py)
+- [ ] T025 [P] Update API documentation (docs/api.md)
+- [ ] T026 Performance tests for API endpoints
+- [ ] T027 Review and refactor code for maintainability
+
+## Phase 3.6: New Feature: Advanced File Search
+
+### Phase 3.6.1: Tests First (TDD)
+- [ ] T028 [P] Integration test for file search (tests/integration/test_file_search.py)
+
+### Phase 3.6.2: Core Implementation
+- [ ] T029 Implement search logic in file_browser.py (src/services/file_browser.py)
+- [ ] T030 Implement `fs.search` endpoint (src/main.py)
+
 
 ## Dependencies
 - Tests (T004-T010) before implementation (T011-T020)
