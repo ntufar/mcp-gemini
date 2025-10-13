@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mcp-server:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MCP_SERVER_ROOT_DIR=/data
+    volumes:
+      # Mount a volume to allow the server to access host files
+      - ./data:/data:ro  # Read-only access as a security measure
+    restart: unless-stopped
